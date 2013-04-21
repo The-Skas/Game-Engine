@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Graphics%28Temp%29">
+      <UniqueIdentifier>{b64272a5-d254-4682-b5ee-f15797fe05bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CoreEngine">
+      <UniqueIdentifier>{40143a63-25b2-406a-8620-240dde255538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Messaging">
+      <UniqueIdentifier>{f956919c-7622-4f60-80b5-5bc74c22d944}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EntityList">
+      <UniqueIdentifier>{7da2707e-bc3f-4bea-a10d-83950d4428a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{c38efafd-cc67-4421-aeb9-a509f2c3fb7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{0f10939e-0256-4c45-8771-f15993062ee7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Globals">
+      <UniqueIdentifier>{9269ab32-946e-41f0-b77e-dccddeda5065}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameLogic">
+      <UniqueIdentifier>{80bce0ab-5ed5-4fdf-806d-cd04fac3f566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\GraphicsComponent">
+      <UniqueIdentifier>{447b637d-5fa1-4959-80c0-8ca3ef0bee9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\InputComponent">
+      <UniqueIdentifier>{c9e6cf13-d1aa-44ee-bf30-e47dacf11729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\GraphicsComponent\Particles">
+      <UniqueIdentifier>{6d82300b-a7d7-4446-8099-610a88a28f63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\GraphicsComponent\Particles\States">
+      <UniqueIdentifier>{e09cdf15-3402-4ed3-8b00-baaae29cfdd8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreEngine.cpp">
+      <Filter>Source Files\CoreEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Source Files\Graphics%28Temp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityList.cpp">
+      <Filter>Source Files\EntityList</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\EntityList</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp">
+      <Filter>Source Files\Globals</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogic.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsComponent.cpp">
+      <Filter>Source Files\Components\GraphicsComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>Source Files\Components\InputComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticlesExpand.cpp">
+      <Filter>Source Files\Components\GraphicsComponent\Particles\States</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleWander.cpp">
+      <Filter>Source Files\Components\GraphicsComponent\Particles\States</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleWater.cpp">
+      <Filter>Source Files\Components\GraphicsComponent\Particles\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Water.cpp">
+      <Filter>Source Files\Components\GraphicsComponent\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleGroup.cpp">
+      <Filter>Source Files\Components\GraphicsComponent\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="PerlinNoise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Source Files\Components\GraphicsComponent\Particles</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SystemStructure.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreEngine.h">
+      <Filter>Source Files\CoreEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Messages.h">
+      <Filter>Source Files\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Source Files\Graphics%28Temp%29</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityList.h">
+      <Filter>Source Files\EntityList</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Source Files\EntityList</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Source Files\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic.h">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="EntitySheet.h">
+      <Filter>Source Files\EntityList</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsComponent.h">
+      <Filter>Source Files\Components\GraphicsComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SpawnMessage.h">
+      <Filter>Source Files\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>Source Files\Components\InputComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleManager.h">
+      <Filter>Source Files\Components\GraphicsComponent\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="Water.h">
+      <Filter>Source Files\Components\GraphicsComponent\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleWander.h">
+      <Filter>Source Files\Components\GraphicsComponent\Particles\States</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticlesExpand.h">
+      <Filter>Source Files\Components\GraphicsComponent\Particles\States</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleWater.h">
+      <Filter>Source Files\Components\GraphicsComponent\Particles\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Source Files\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleGroup.h">
+      <Filter>Source Files\Components\GraphicsComponent\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="PerlinNoise.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>Source Files\Components\GraphicsComponent\Particles</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
