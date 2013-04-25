@@ -20,7 +20,7 @@ public:
   //On input , initalise the appropriate ParticleManagers to be used.
 private:
   int state;
-  std::vector<ParticleManager<ParticleGroup>*> vectorOfManagers;
+  std::vector<GraphicsComponent*> vectorOfGraphics;
   sf::String effect;
 };
 #endif

@@ -72,6 +72,7 @@ ParticleManager<T>::ParticleManager()
   particleTemplate->pParticleManager = this;
   mapParticles.clear();
   particleID = 0;
+  masked = 0;
   state = new ParticleWander;
   sf::Randomizer::GetSeed();
 }
@@ -145,9 +146,13 @@ void ParticleManager<T>::DrawGL()
  
   //Flag Check
   //mapParticles[0]->b;
+
   state->exit(mapParticles.begin()->second);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-  
+  if (masked)
+    glBlendFunc(GL_ONE_MINUS_DST_ALPHA, GL_DST_ALPHA);
+  else
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+ 
   for (std::map<unsigned int, ParticleGroup *>::iterator itr = mapParticles.begin(); itr != mapParticles.end(); itr++)
   {
     state->execute(itr->second);
@@ -190,6 +195,7 @@ void ParticleManager<T>::DrawGL()
     glEnd();
   
   }
+ 
   
 }
 

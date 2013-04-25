@@ -41,8 +41,8 @@
     <LibraryPath>C:\Sandbox\SFML1.62010\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v7.0A\Lib;C:\Sandbox\SFML1.62010\Libs;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)../SFML1.62010/Libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)../SFML1.62010/SFML;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -87,6 +87,7 @@
     <ClCompile Include="ParticleWander.cpp" />
     <ClCompile Include="ParticleWater.cpp" />
     <ClCompile Include="PerlinNoise.cpp" />
+    <ClCompile Include="RoughSketch.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Water.cpp" />
   </ItemGroup>
@@ -111,6 +112,7 @@
     <ClInclude Include="ParticleWander.h" />
     <ClInclude Include="ParticleWater.h" />
     <ClInclude Include="PerlinNoise.h" />
+    <ClInclude Include="RoughSketch.h" />
     <ClInclude Include="SpawnMessage.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="SystemStructure.h" />

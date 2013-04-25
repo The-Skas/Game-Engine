@@ -100,6 +100,9 @@
     <ClCompile Include="ParticleSystem.cpp">
       <Filter>Source Files\Components\GraphicsComponent\Particles</Filter>
     </ClCompile>
+    <ClCompile Include="RoughSketch.cpp">
+      <Filter>Source Files\Components\GraphicsComponent</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SystemStructure.h">
@@ -168,14 +171,17 @@
     <ClInclude Include="Transform.h">
       <Filter>Source Files\Messaging</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleGroup.h">
-      <Filter>Source Files\Components\GraphicsComponent\Particles</Filter>
-    </ClInclude>
     <ClInclude Include="PerlinNoise.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="ParticleSystem.h">
       <Filter>Source Files\Components\GraphicsComponent\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="RoughSketch.h">
+      <Filter>Source Files\Components\GraphicsComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleGroup.h">
+      <Filter>Source Files\Components\GraphicsComponent</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

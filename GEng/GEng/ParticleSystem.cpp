@@ -1,4 +1,5 @@
 #include "ParticleSystem.h"
+#include "RoughSketch.h"
 
 namespace Systemstate
 {
@@ -6,6 +7,7 @@ namespace Systemstate
   {
     wander,
     ocean,
+    mask_ocean,
     size
   };
 };
@@ -24,11 +26,11 @@ ParticleSystem::~ParticleSystem()
 }
 void ParticleSystem::ChangeState()
 {
-  for (unsigned i = 0; i < vectorOfManagers.size(); ++i)
+  for (unsigned i = 0; i < vectorOfGraphics.size(); ++i)
   {
-    delete vectorOfManagers[i];
+    delete vectorOfGraphics[i];
   }
-  vectorOfManagers.clear();
+  vectorOfGraphics.clear();
 
   ParticleManager<ParticleGroup> * temp = new ParticleManager<ParticleGroup>;
   temp->trans = this->trans;
@@ -42,15 +44,15 @@ void ParticleSystem::ChangeState()
       temp->AddParticle(new ParticleGroup(30));
     }
     temp->mode = GlMode::glLines | GlMode::glPoints;
-    vectorOfManagers.push_back(temp);
+    vectorOfGraphics.push_back(temp);
   }
   else if (state == Systemstate::ocean)
   {
-    effect.SetText("Ocean.");
+    effect.SetText("Ocean(Perlin Noise)");
     for (int j = 0; j < 32000; ++j)
       temp->AddParticle(new ParticleGroup(0, 1.0f, .8f, 1.0f, 1.0f));
     temp->mode =GlMode::glPoints;
-    vectorOfManagers.push_back(temp);
+    vectorOfGraphics.push_back(temp);
 
     //Add a wander within it
     temp = new ParticleManager<ParticleGroup>;
@@ -58,8 +60,24 @@ void ParticleSystem::ChangeState()
     temp->AddParticle(new Water(20));
     temp->mode = GlMode::glDraw;
     
-    vectorOfManagers.push_back(temp);
+    vectorOfGraphics.push_back(temp);
 
+  }
+  else if (state==Systemstate::mask_ocean)
+  {
+    vectorOfGraphics.push_back(new RoughSketch);
+    effect.SetText("Ocean with Mask");
+    for (int j = 0; j < 32000; ++j)
+      temp->AddParticle(new ParticleGroup(0, 1.0f, .8f, 1.0f, 1.0f));
+    temp->mode =GlMode::glPoints;
+    temp->masked = true;
+    vectorOfGraphics.push_back(temp);
+
+    //Add a wander within it
+    GraphicsComponent * water = new Water(20);
+    water->trans = this->trans;
+    water->masked = true;
+    vectorOfGraphics.push_back(water);
   }
   
 }
@@ -84,13 +102,22 @@ void ParticleSystem::BroadcastMessage(Message * message)
       ChangeState();
     }
   }
+  else if (message->msgID == MessageID::MouseMove)
+  {
+    //Broadcast to all GraphicComponents;
+    for (unsigned i = 0; i < vectorOfGraphics.size(); ++i)
+    {
+      vectorOfGraphics[i]->BroadcastMessage(message);
+    }
+  }
 }
 
 void ParticleSystem::DrawGL()
 {
-  for (unsigned i = 0; i < vectorOfManagers.size(); ++i)
+  for (unsigned i = 0; i < vectorOfGraphics.size(); ++i)
   {
-    vectorOfManagers[i]->DrawGL();
+
+    vectorOfGraphics[i]->DrawGL();
   }
   g_App->Draw(effect);
 }

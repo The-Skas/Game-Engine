@@ -9,7 +9,7 @@ class SpawnMessage;
 class GraphicsComponent : public Component
 {
 public:
-
+  bool masked;
   Transform *trans;
   virtual void DrawGL(){};
 };

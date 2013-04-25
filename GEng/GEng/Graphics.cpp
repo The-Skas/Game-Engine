@@ -4,6 +4,8 @@
 #include <SFML\Window.hpp>
 #include <vector>
 #include "ParticleSystem.h"
+#include "Graphics.h"
+#include "RoughSketch.h"
 #define WHITE 1.0, 1.0, 1.0
 #define RED 1.0, 0.0, 0.0
 #define GREEN 0.0, 1.0, 0.0
@@ -29,6 +31,7 @@ void Graphics::BroadcastMessage(Message * message)
   }
   else if(message->msgID == MessageID::Spawn)
     CallSpawnFunction(dynamic_cast<SpawnMessage *>(message));
+
 };
 
 void Graphics::ResizeScreen(int width, int height)
@@ -64,15 +67,19 @@ void Graphics::Update(float timeslice)
   glLoadIdentity();
   //glScalef((float)g_App->GetWidth() / 800.0f, g_App->GetWidth()/800.0f, 1.0f);
   
-  glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
   glColor4f(WHITE, 1.0);
-  /*glEnable(GL_TEXTURE_2D);
-  for (int i =0; i < TexInstances.size() ; ++i)
+ 
+
+ 
+ // glEnable(GL_SCISSOR_TEST);
+  //glScissor(0, 500, 500, 100);
+ /*    for (int i =0; i < TexInstances.size() ; ++i)
   {
-    glBindTexture(GL_TEXTURE_2D, Models[EntityID::Icecream].texture);
+   // glBindTexture(GL_TEXTURE_2D, Models[EntityID::Icecream].texture);
     TexInstances[i]->DrawGL();
   }*/
-
   glDisable(GL_TEXTURE_2D);
   for (std::map<unsigned, GraphicsComponent*>::iterator itr = NonTexInstances.begin() ; itr != NonTexInstances.end(); ++itr)
   {
@@ -100,7 +107,7 @@ void Graphics::Update(float timeslice)
 
  
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//glTranslatef(0.0f, 0.0f, -30.0f);
  
@@ -154,8 +161,7 @@ void Graphics::Initialize()
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
-
-
+  //NonTexInstances[100] = new RoughSketch;
  
   for (int i = 0; i < 100; ++i)
   {

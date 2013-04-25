@@ -13,6 +13,7 @@ Water::Water(int setsize)
   ent->AddComponent(this);
 
  // NonTexInstances[ent->ID] = this;*/
+  masked = 0;
   speed = 0;
   size = setsize;
   angle = 0;
@@ -75,21 +76,28 @@ void glColor4fWrap(color4 &temp)
 void Water::DrawGL()
 {
   glLoadIdentity();
-  
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  if (masked)
+    glBlendFunc(GL_ONE_MINUS_DST_ALPHA, GL_DST_ALPHA);
+  else
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glBegin(GL_QUADS);
     DrawQuadsGL();
   glEnd();
-
+ // glColorMask(0, 0, 0, 1);
+ // glBlendFunc(GL_, GL_ZERO);
   float scalex, scaley;
   scalex = scaley = 4;
   glScalef(scalex,scaley,1);
   glPointSize(scalex*1);
  // glPointSize(1);
+ // glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+  
   glBegin(GL_POINTS);
     DrawPointsGL();
   glEnd();
   glScalef(1/scalex,1/scaley,1);
+ // glBlendFunc(GL_DST_ALPHA, GL_ZERO);
+
 }
 void Water::DrawPointsGL()
 {
@@ -100,7 +108,7 @@ void Water::DrawPointsGL()
     for (float i = 0; i<perlin->width-1; )
     {
       float rndm = perlin->Perlin2D((float)i,j);
-      glColor4f(rndm+0.15f, rndm+0.15f,rndm+0.3f, 0.3f);
+      glColor4f(rndm+0.15f, rndm+0.15f,rndm+0.15f, 0.2f);
       glVertex2f((i*scalet/scale), j*scalet/scale+speed);
       i+= scale/scalet;
     }
@@ -111,7 +119,7 @@ void Water::DrawPointsGL()
 
 void Water::DrawQuadsGL()
 {
-  glColor4f(0.3f, 0.5f, 1.0f, 0.85f);
+  glColor4f(0.2f, 0.5f, 1.0f, 0.8f);
   glVertex2f(0, 0);
   glVertex2f(0, 600);
   glVertex2f(800, 600);
