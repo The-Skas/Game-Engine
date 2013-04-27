@@ -23,7 +23,7 @@ void Graphics::BroadcastMessage(Message * message)
     if ((int)message->info == sf::Key::F1)
     {
       fullscreen = !fullscreen;
-      g_App->Create(fullscreen ? sf::VideoMode::GetDesktopMode() : sf::VideoMode(800, 600, 32) , "SFML/NeHe OpenGL",
+      g_App->Create(fullscreen ? sf::VideoMode::GetDesktopMode() : sf::VideoMode(800, 600, 32) , "ParticleTest",
                         (fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
       ResizeScreen(g_App->GetWidth(), g_App->GetHeight());
       
@@ -123,7 +123,7 @@ std::string Graphics::GetName()
 
 void Graphics::Initialize()
 {
-  App.Create(sf::VideoMode(800, 600 ,32), "Poop");
+  App.Create(sf::VideoMode(800, 600 ,32), "ParticleTest");
   glViewport(0, 0, 800, 600);
   glHint(GL_POINT_SMOOTH_HINT, GL_FASTEST);
   glHint(GL_LINE_SMOOTH_HINT, GL_FASTEST);
