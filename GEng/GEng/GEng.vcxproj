@@ -42,7 +42,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LibraryPath>$(ProjectDir)../SFML1.62010/Libs;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)../SFML1.62010/SFML;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)../SFML1.62010/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
