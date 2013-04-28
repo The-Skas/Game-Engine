@@ -7,7 +7,11 @@ The project on GitHub portrays some graphical features of particle manipulation 
 system.
 
 ===Information===
-Cycle through the different particles by using the arrow keys:
+Controls:
+
+Left/Right Arrow Key: Cycle through the different particles. 
+ESC: To quit.
+Mouse: (For the Mask Particle System).
 
           1. The first group of particles is a basic group which are set in a wander state.
 
