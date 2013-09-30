@@ -1,15 +1,14 @@
 #include "RoughSketch.h"
-#include <gl\GLU.h>
 
 RoughSketch::RoughSketch()
 {
-if(img.sfImage.LoadFromFile("Starinv.png"))
+if(img.sfImage.loadFromFile("Starinv.png"))
   {
     glGenTextures(1, &(img.texture));
     glBindTexture(GL_TEXTURE_2D, img.texture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img.sfImage.GetWidth(), img.sfImage.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, img.sfImage.GetPixelsPtr());
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img.sfImage.getSize().x, img.sfImage.getSize().y, 0, GL_RGBA, GL_UNSIGNED_BYTE, img.sfImage.getPixelsPtr());
   }
   trans = new Transform;
   trans->position.x = 400;
@@ -50,7 +49,7 @@ void RoughSketch::BroadcastMessage(Message * msg)
 {
   if (msg->msgID == MessageID::MouseMove)
   {
-    this->trans->position.x =(float) ((sf::Event::MouseMoveEvent *)msg->info)->X;
-    this->trans->position.y =(float)((sf::Event::MouseMoveEvent *)msg->info)->Y;
+    this->trans->position.x =(float) ((sf::Event::MouseMoveEvent *)msg->info)->x;
+    this->trans->position.y =(float)((sf::Event::MouseMoveEvent *)msg->info)->y;
   }
 }

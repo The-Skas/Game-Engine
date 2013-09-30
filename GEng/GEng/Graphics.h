@@ -1,7 +1,8 @@
 #ifndef GENG_SRC_GRAPHICS_H_
 #define GENG_SRC_GRAPHICS_H_
 #include "SystemStructure.h"
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
 #include "ParticleManager.h"
 #include "SpawnMessage.h"
 
@@ -12,7 +13,7 @@ public:
 
   sf::Image sfImage;
   EntityID::EntityType eType;
-  GLuint texture;
+  uint32_t texture;
 };
 
 

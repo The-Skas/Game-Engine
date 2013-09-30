@@ -1,7 +1,7 @@
 #include "Graphics.h"
 #include "Globals.h"
 #include <iostream>
-#include <SFML\Window.hpp>
+#include <SFML/Window.hpp>
 #include <vector>
 #include "ParticleSystem.h"
 #include "Graphics.h"
@@ -20,12 +20,12 @@ void Graphics::BroadcastMessage(Message * message)
   if(message->msgID == MessageID::CharacterKey)
   {
     std::cout << "Character Key was pressed." << std::endl;
-    if ((int)message->info == sf::Key::F1)
+    if ((size_t)message->info == sf::Keyboard::F1)
     {
       fullscreen = !fullscreen;
-      g_App->Create(fullscreen ? sf::VideoMode::GetDesktopMode() : sf::VideoMode(800, 600, 32) , "ParticleTest",
+      g_App->create(fullscreen ? sf::VideoMode::getDesktopMode() : sf::VideoMode(800, 600, 32) , "ParticleTest",
                         (fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
-      ResizeScreen(g_App->GetWidth(), g_App->GetHeight());
+      ResizeScreen(g_App->getSize().x, g_App->getSize().y);
       
     }
   }
@@ -113,7 +113,7 @@ void Graphics::Update(float timeslice)
  
 	
   //Component::scrnHeight = 600; Component::scrnWidth = 800;
-	App.Display();
+	App.display();
 };
 
 std::string Graphics::GetName() 
@@ -123,7 +123,7 @@ std::string Graphics::GetName()
 
 void Graphics::Initialize()
 {
-  App.Create(sf::VideoMode(800, 600 ,32), "ParticleTest");
+  App.create(sf::VideoMode(800, 600 ,32), "ParticleTest");
   glViewport(0, 0, 800, 600);
   glHint(GL_POINT_SMOOTH_HINT, GL_FASTEST);
   glHint(GL_LINE_SMOOTH_HINT, GL_FASTEST);
@@ -145,14 +145,14 @@ void Graphics::Initialize()
   //Order of pushback Important
   Models.resize(EntityID::LastID);
   OurImage localIcecream;
-  localIcecream.sfImage.LoadFromFile("ice-cream-chargers.jpg");
+  localIcecream.sfImage.loadFromFile("ice-cream-chargers.jpg");
   localIcecream.eType = EntityID::Icecream;
   //glGenTextures(1, &(icecream->texture));
   glGenTextures(1, &(localIcecream.texture));
   glBindTexture(GL_TEXTURE_2D, localIcecream.texture);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, localIcecream.sfImage.GetWidth(), localIcecream.sfImage.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, localIcecream.sfImage.GetPixelsPtr());
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, localIcecream.sfImage.getSize().x, localIcecream.sfImage.getSize().y, 0, GL_RGBA, GL_UNSIGNED_BYTE, localIcecream.sfImage.getPixelsPtr());
 
   Models[EntityID::Icecream] =localIcecream;
   
@@ -165,7 +165,7 @@ void Graphics::Initialize()
  
   for (int i = 0; i < 100; ++i)
   {
-    rndcolors[i/10][i%10] = sf::Randomizer::Random(0.0f, 1.0f);
+    rndcolors[i/10][i%10] = (float)rand()/(float)RAND_MAX;
   }
 };
 

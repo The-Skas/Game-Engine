@@ -19,7 +19,7 @@ class Component
 {
 public:
   Component(){};
-  ~Component(){};
+  virtual ~Component(){};
   //static float scrnWidth;
   //static float scrnHeight;
 	//*

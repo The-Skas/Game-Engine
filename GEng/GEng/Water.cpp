@@ -1,6 +1,7 @@
 #include "Water.h"
 #include "ParticleWander.h"
 #include "Graphics.h"
+#include "_Math.h"
 float scalePerlin;
 
 float speed;
@@ -31,7 +32,7 @@ Water::Water(int setsize)
       for (int k = 0; k < 4; ++k)
       {
         
-        color[i][j][k].a = sf::Randomizer::Random(0.95f, 1.0f);
+        color[i][j][k].a = RandRange(0.95f, 1.0f);
        
         if (j == 0)
         {
@@ -48,9 +49,9 @@ Water::Water(int setsize)
           }
         }
 
-        color[i][j][k].b = sf::Randomizer::Random(0.4f, 0.5f);
-        color[i][j][k].g = sf::Randomizer::Random(0.3f, 0.4f);
-        color[i][j][k].r = sf::Randomizer::Random(0.0f, 0.1f);
+        color[i][j][k].b = RandRange(0.4f, 0.5f);
+        color[i][j][k].g = RandRange(0.3f, 0.4f);
+        color[i][j][k].r = RandRange(0.0f, 0.1f);
       }
     }
   }
@@ -62,14 +63,14 @@ void glColor4fWrap(color4 &temp)
 
  // temp.r += sf::Randomizer::Random(-0.05f, 0.05f);
   if (temp.g >= 0.3f)
-    temp.g += sf::Randomizer::Random(0.0f, -0.050f)*scale;
+    temp.g += RandRange(0.0f, -0.050f)*scale;
   else
-   temp.g +=sf::Randomizer::Random(-0.05f, 0.05f)*scale;
+   temp.g +=RandRange(-0.05f, 0.05f)*scale;
 
   if (temp.r >= 0.05f)
-    temp.r += sf::Randomizer::Random(0.0f, -0.02f)*scale;
+    temp.r += RandRange(0.0f, -0.02f)*scale;
   else
-    temp.r += sf::Randomizer::Random(-0.02f, 0.02f)*scale;
+    temp.r += RandRange(-0.02f, 0.02f)*scale;
 
 }
 

@@ -1,8 +1,7 @@
 #ifndef COREENGINE
 #define COREENGINE
-
 #include "SystemStructure.h"
-#include <SFML\System.hpp>
+#include <SFML/System.hpp>
 #include <vector>
 //The core manages all the systems in the game. Updating them, routing messages, and
 //destroying them when the game ends.
@@ -36,7 +35,7 @@ private:
 	std::vector<System*> Systems;
 	
   //Time functionality using sfml library
-  sf::Clock Clock;
+  sf::Clock clock;
 
   float LastTime;
   float currentTime;

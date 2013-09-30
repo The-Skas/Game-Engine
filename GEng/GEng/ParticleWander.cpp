@@ -1,6 +1,7 @@
 
 #include "ParticleWander.h"
 #include "ParticleManager.h"
+#include "_Math.h"
 //#include "ParticleGroup.h"
 //use #include "ParticleManager.h"
 //if you will be using the backpointer "owner"
@@ -22,8 +23,8 @@ This creates a smoooth steering, rather then a constant chaos of particles
   //                                          :^: This value Expands the radius of roaming
   //                                                                            :^: These values controls the fluidity of changing direction
 
-  ParticleGroup->velocityX =ParticleGroup->velocityX * 0.99f + sf::Randomizer::Random(-.25f, .25f);
-  ParticleGroup->velocityY =ParticleGroup->velocityY * 0.99f + sf::Randomizer::Random(-.25f, .25f);
+  ParticleGroup->velocityX =ParticleGroup->velocityX * 0.99f + RandRange(-.25f, .25f);
+  ParticleGroup->velocityY =ParticleGroup->velocityY * 0.99f + RandRange(-.25f, .25f);
 
  
 }

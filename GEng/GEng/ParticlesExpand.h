@@ -20,4 +20,4 @@ public:
 
   float originX, originY;
 };
-#endif GENG_SRC_PARTICLESEXPAND_H_
+#endif

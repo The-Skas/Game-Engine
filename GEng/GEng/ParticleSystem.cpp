@@ -16,16 +16,18 @@ ParticleSystem::ParticleSystem()
   state = -1;
   
   std::string temp =  "Use the Left or Right arrow keys to cycle through.\n";
-  effect.SetText(temp);
-  effect.SetSize(20.0f);
-  effect.SetStyle(sf::String::Bold);
-  effect.SetPosition(10, 10);
+  
+  effect.setString(temp);
+  effect.setCharacterSize(20.0f);
+  effect.setStyle(sf::Text::Bold);
+  effect.setPosition(10, 10);
 }
 ParticleSystem::~ParticleSystem()
 {
 }
 void ParticleSystem::ChangeState()
 {
+#warning Memory Leak. Issue Could be with Graphics Component Not having a deallocater.
   for (unsigned i = 0; i < vectorOfGraphics.size(); ++i)
   {
     delete vectorOfGraphics[i];
@@ -38,7 +40,7 @@ void ParticleSystem::ChangeState()
   state = state % (Systemstate::size);
   if ( state == Systemstate::wander )
   {
-    effect.SetText("Wandering Particles.");
+    effect.setString("Wandering Particles.");
     for (unsigned i = 0; i < 100; ++i)
     {
       temp->AddParticle(new ParticleGroup(30));
@@ -48,7 +50,7 @@ void ParticleSystem::ChangeState()
   }
   else if (state == Systemstate::ocean)
   {
-    effect.SetText("Ocean(Perlin Noise)");
+    effect.setString("Ocean(Perlin Noise)");
     for (int j = 0; j < 32000; ++j)
       temp->AddParticle(new ParticleGroup(0, 1.0f, .8f, 1.0f, 1.0f));
     temp->mode =GlMode::glPoints;
@@ -66,7 +68,7 @@ void ParticleSystem::ChangeState()
   else if (state==Systemstate::mask_ocean)
   {
     vectorOfGraphics.push_back(new RoughSketch);
-    effect.SetText("Ocean with Mask");
+    effect.setString("Ocean with Mask");
     for (int j = 0; j < 32000; ++j)
       temp->AddParticle(new ParticleGroup(0, 1.0f, .8f, 1.0f, 1.0f));
     temp->mode =GlMode::glPoints;
@@ -85,17 +87,17 @@ void ParticleSystem::BroadcastMessage(Message * message)
 {
   //Recieve inputs for the ParticleSystem
   //Intialise the relevant particleManagers for each differing input
-  int key = (int)(message->info);
+  int key = (size_t)(message->info);
   if (message->msgID == MessageID::CharacterKey)
   {
-    if (key == sf::Key::Right)
+    if (key == sf::Keyboard::Right)
     {
       //Go to next manager state with its own intialises
       ++state;
       //Call the function that intialises depending on what state.
       ChangeState();
     }
-    else if (key == sf::Key::Left)
+    else if (key == sf::Keyboard::Left)
     {
       --state;//Go to previous state
       //Call the function that intialises depending on what state.
@@ -119,6 +121,6 @@ void ParticleSystem::DrawGL()
 
     vectorOfGraphics[i]->DrawGL();
   }
-  g_App->Draw(effect);
+  g_App->draw(effect);
 }
 

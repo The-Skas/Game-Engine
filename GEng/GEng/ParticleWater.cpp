@@ -1,6 +1,6 @@
 #include "ParticleWater.h"
 #include "ParticleManager.h"
-#include "Math.h"
+#include "_Math.h"
 
 #define MAGNETIC_SCALE 0.025f
 
@@ -10,11 +10,11 @@
 void ParticleWater::AddWater()
 {
   ParticleGroup* temp = p_manager->AddParticle(new ParticleGroup(0));
-  float rnd = sf::Randomizer::Random(0.5f, 1.0f);
+  float rnd = RandRange(0.5f, 1.0f);
   temp->r = rnd; temp->g =rnd; temp->b = 1.0f; temp->alpha = 1.0f;
   //temp->trans->position.x += sf::Randomizer::Random(-(int)(std::sqrt(size)*radius/2), 0);
   temp->trans->position.y += -150;
-  temp->velocityX = sf::Randomizer::Random(-0.25f, .5f);
+  temp->velocityX = RandRange(-0.25f, .5f);
   temp->velocityY = -1.0f;
 
   float sqrt;
@@ -26,7 +26,6 @@ void ParticleWater::enter(ParticleGroup * particleGroup)
  radius = 100;
  size = 300;
  glPointSize(3);
- sf::Randomizer::GetSeed();
  p_manager = particleGroup->pParticleManager;
 
  int mapsize = p_manager->mapParticles.size();

@@ -8,7 +8,7 @@
 
 ParticleGroup::ParticleGroup(int tempTrailSize, float A,float R , float G, float B )
   {
-    r=sf::Randomizer::Random(0.0f, 1.0f);g=sf::Randomizer::Random(0.0f, 1.0f);b=sf::Randomizer::Random(0.0f, 1.0f); alpha = 1.0; trailSize = tempTrailSize; trailAlpha = ((float)A)*0.3f;
+    r=(float)rand()/(float)RAND_MAX;g=(float)rand()/(float)RAND_MAX;b=(float)rand()/(float)RAND_MAX; alpha = 1.0; trailSize = tempTrailSize; trailAlpha = ((float)A)*0.3f;
     velocityX = 0;
     velocityY = 0;
     state = new ParticleWander;

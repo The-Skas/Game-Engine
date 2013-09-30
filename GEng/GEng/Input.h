@@ -1,24 +1,24 @@
 #include "SystemStructure.h"
-#include <SFML\Window.hpp>
+#include <SFML/Window.hpp>
 #include <map>
 #include "SpawnMessage.h"
 class Input : public System
 {
 
 public:
-	 void BroadcastMessage(Message* message);
+   void BroadcastMessage(Message* message);
 
-	//Updates based on time
-	 void Update(float timeslice);	
+  //Updates based on time
+   void Update(float timeslice);	
 
-	//The name of the system
-	 std::string GetName();	
+  //The name of the system
+   std::string GetName();	
 
-	//System initialization
-	 void Initialize();
-		
-	//Destructor
-	 ~Input();
+  //System initialization
+   void Initialize();
+    
+  //Destructor
+   ~Input();
 
    
    //Need to store a list of component inputs. Each component will be able to broadcast a message to their systems. Does this mean.

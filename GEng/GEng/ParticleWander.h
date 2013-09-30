@@ -15,5 +15,4 @@ public:
   static int decr;
 };
 
-#endif GENG_SRC_PARTICLEWANDER_H_
- 
+#endif  

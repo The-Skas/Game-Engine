@@ -74,14 +74,19 @@ ParticleManager<T>::ParticleManager()
   particleID = 0;
   masked = 0;
   state = new ParticleWander;
-  sf::Randomizer::GetSeed();
+  srand (time(NULL));
 }
 template <class T>
 inline ParticleManager<T>::~ParticleManager()
 {
-  for (std::map<unsigned int, ParticleGroup*>::iterator itr = mapParticles.begin(); itr != mapParticles.end(); ++itr)
+  //NOTE: When using iteration in maps, make sure not to delete the refrence of the current itr before incrementing it.
+  //Otherwise it doesnt know where to go next when incrementing. (I dont think its addition, but a linked list)
+  //atleast thats what the problem seemed to be..
+  for (std::map<unsigned int, ParticleGroup*>::iterator itr = mapParticles.begin(); itr != mapParticles.end(); )
   {
-    DeleteParticle(itr->second);
+    ParticleGroup * temp = itr->second;
+    itr++;
+    DeleteParticle(temp);
   }
   delete particleTemplate;
   delete state;
@@ -131,7 +136,7 @@ void ParticleManager<T>::DeleteParticle(ParticleGroup * particleGroup)
 
   delete particleGroup->GetOwner();
   delete particleGroup;
- // mapParticles.erase(mapParticles.find(tempID));
+  mapParticles.erase(mapParticles.find(tempID));
 
 
 }
@@ -140,8 +145,9 @@ void ParticleManager<T>::DrawGL()
 {
   if (mapParticles.size() == 0)
     return;
-  float width = g_App->GetWidth()/800.0f;
-  float height = g_App->GetHeight()/600.0f;
+  
+  float width = g_App->getSize().x/800.0f;
+  float height = g_App->getSize().y/600.0f;
 
  
   //Flag Check
@@ -202,45 +208,46 @@ void ParticleManager<T>::DrawGL()
 template <class T>
 void ParticleManager<T>::BroadcastMessage(Message *msg)
 {
-  if (msg->msgID == MessageID::CharacterKey)
-  {
-    if (mapParticles.size() == 0 )
-      return;
-    if ((int)msg->info == sf::Key::Right)
-    {
-      State<ParticleGroup>* temp = state;
-      state->exit(particleTemplate);
-      state = new ParticleWater;
-      delete temp;
-      state->enter(particleTemplate);
-      mode = GlMode::glLines | GlMode::glPoints;
-    }
-    else if ((int)msg->info == sf::Key::Down)
-    {
-      this->state->exit(particleTemplate);
-      State<ParticleGroup>* temp = state;
-      state = new ParticleWander;
-      if (state != NULL)
-        delete temp;
-      state->enter(particleTemplate);
-
-      mode = mode | GlMode::glLines | GlMode::glPoints;
-    }
-    else if ((int)msg->info == sf::Key::Left)
-    {
-       
-       //AddParticle(new Water(150));
-
-      // NonTexInstances.push_back(new Water(150));
-       mode = 0;
-       mode = mode |GlMode::glQuads|GlMode::glPoints ;
-
-       this->state->exit(particleTemplate);
-       State<ParticleGroup>* temp = state;
-
-       state = new ParticleWander;
-       delete temp;
-    }
-  };
+//  if (msg->msgID == MessageID::CharacterKey)
+//  {
+//    if (mapParticles.size() == 0 )
+//      return;
+//    
+//    if ((size_t)msg->info == sf::Keyboard::Right)
+//    {
+//      State<ParticleGroup>* temp = state;
+//      state->exit(particleTemplate);
+//      state = new ParticleWater;
+//      delete temp;
+//      state->enter(particleTemplate);
+//      mode = GlMode::glLines | GlMode::glPoints;
+//    }
+//    else if ((size_t)msg->info == sf::Keyboard::Down)
+//    {
+//      this->state->exit(particleTemplate);
+//      State<ParticleGroup>* temp = state;
+//      state = new ParticleWander;
+//      if (state != NULL)
+//        delete temp;
+//      state->enter(particleTemplate);
+//
+//      mode = mode | GlMode::glLines | GlMode::glPoints;
+//    }
+//    else if ((size_t)msg->info == sf::Keyboard::Left)
+//    {
+//      
+//       //AddParticle(new Water(150));
+//
+//      // NonTexInstances.push_back(new Water(150));
+//       mode = 0;
+//       mode = mode |GlMode::glQuads|GlMode::glPoints ;
+//
+//       this->state->exit(particleTemplate);
+//       State<ParticleGroup>* temp = state;
+//
+//       state = new ParticleWander;
+//       delete temp;
+//    }
+//  };
 };
 #endif

@@ -21,6 +21,6 @@ public:
 private:
   int state;
   std::vector<GraphicsComponent*> vectorOfGraphics;
-  sf::String effect;
+  sf::Text effect;
 };
 #endif

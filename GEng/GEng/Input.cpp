@@ -32,32 +32,33 @@ struct MouseLoc
 void Input::Update(float timeslice)
 {
 	//Handle Input Keys
-	while (g_App->GetEvent(input)) {
+  
+	while (g_App->pollEvent(input)) {
     Message msg;
-    if ((input.Type == sf::Event::MouseButtonPressed))
+    if (input.type == sf::Event::MouseButtonPressed)
     {
     
     }
-    else if (input.Type ==  sf::Event::MouseMoved)
+    else if (input.type ==  sf::Event::MouseMoved)
     {
-      std::cout << input.MouseMove.X << std::endl;
+      std::cout << input.mouseMove.x << std::endl;
       msg.msgID = MessageID::MouseMove;
-      msg.info = (void*)(&(input.MouseMove));
+      msg.info = (void*)(&(input.mouseMove));
 
       BroadcastToComponents(&msg);
     }
-		else if ( (input.Type == sf::Event::KeyPressed))
+		else if ( input.type == sf::Event::KeyPressed)
 		{
-      if (input.Key.Code == sf::Key::Escape)
+      if (input.key.code == sf::Keyboard::Escape)
       {
 				CORE->GameActive = false;
         return;
       }
-			std::cout << "Keycode is " << input.Key.Code << std::endl;
+			std::cout << "Keycode is " << input.key.code << std::endl;
       
       msg.msgID = MessageID::CharacterKey;
       //Sets the key code to the messsage's void pointer
-      msg.info = (void*) input.Key.Code;
+      msg.info = (void*) input.key.code;
 			CORE->BroadcastMessage(&msg);     
 			BroadcastToComponents(&msg);
 		}

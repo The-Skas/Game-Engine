@@ -1,5 +1,6 @@
 #include "ParticlesExpand.h"
 #include "ParticleManager.h"
+#include "_Math.h"
 void ParticlesExpand::enter(ParticleGroup * particleGroup)
 {
   //The particles will organize in a circle along the circumference of a circle

@@ -1,5 +1,5 @@
 #include "PerlinNoise.h"
-
+#include "_Math.h"
 void PerlinNoise::Initialise()
 {
 
@@ -15,11 +15,11 @@ void PerlinNoise::Initialise()
       rateOfChange[i][j]  = new float[2];
 
       //Intialise Each Segment to have a random vector: X = [0] , Y = [1]
-      RandomVectors[i][j][0] = sf::Randomizer::Random(-1.0f, 1.0f);
-      RandomVectors[i][j][1] = sf::Randomizer::Random(-1.0f, 1.0f);
+      RandomVectors[i][j][0] = RandRange(-1.0f, 1.0f);
+      RandomVectors[i][j][1] = RandRange(-1.0f, 1.0f);
 
-      rateOfChange[i][j][0] = sf::Randomizer::Random(-1.0f, 1.0f);
-      rateOfChange[i][j][1] = sf::Randomizer::Random(-1.0f, 1.0f);
+      rateOfChange[i][j][0] = RandRange(-1.0f, 1.0f);
+      rateOfChange[i][j][1] = RandRange(-1.0f, 1.0f);
 
       float distance = Distance(rateOfChange[i][j][0],rateOfChange[i][j][1]);
 
@@ -92,8 +92,8 @@ float PerlinNoise::Perlin2D(float rndmX, float rndmY)
   tempX = RandomVectors[(int)xwidth][(int)ylength][0];
   tempY = RandomVectors[(int)xwidth][(int)ylength][1];
   float rndm1, rndm2;
-  rndm1 = sf::Randomizer::Random(-1.0f, 1.0f);
-  rndm2 = sf::Randomizer::Random(-1.0f, 1.0f);
+  rndm1 = RandRange(-1.0f, 1.0f);
+  rndm2 = RandRange(-1.0f, 1.0f);
   
 
   RandomVectors[(int)xwidth][(int)ylength][0] += -rateOfChange[(int)xwidth][(int)ylength][0]/1000.0f;
@@ -125,11 +125,13 @@ PerlinNoise::~PerlinNoise()
   {
     for (unsigned j = 0; j < width; ++j)
     {
-      delete  &(RandomVectors[i][j][0]);
-      delete  &(RandomVectors[i][j][1]);
-
-      delete  &(rateOfChange[i][j][0]);
-      delete  &(rateOfChange[i][j][1]);
+      delete  RandomVectors[i][j];
+     
+      delete  rateOfChange[i][j];
     }
+    delete RandomVectors[i];
+    delete rateOfChange[i];
   }
+  delete RandomVectors;
+  delete rateOfChange;
 }

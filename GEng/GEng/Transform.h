@@ -1,7 +1,7 @@
 #ifndef TRANSFORM
 #define TRANSFORM
 
-#include <SFML\System\Vector2.hpp>
+#include <SFML/System/Vector2.hpp>
 
 class Transform
 {

@@ -3,7 +3,8 @@
 #include <iostream>
 CoreEngine::CoreEngine()
 {
-  Clock.Reset();
+  clock.restart();
+  
 	GameActive = true;
 	CORE = this; //Set the global pointer
 }
@@ -23,12 +24,13 @@ void CoreEngine::GameLoop()
 {
 	//Initialize the last time variable so our first frame
 	//is "zero" seconds (and not some huge unknown number)
-	LastTime = Clock.GetElapsedTime();
-  LastTime = Clock.GetElapsedTime();
+  
+	LastTime = clock.getElapsedTime().asSeconds();
+  LastTime = clock.getElapsedTime().asSeconds();
 	while (GameActive)
 	{
 		//Get the current time in milliseconds
-		currentTime = Clock.GetElapsedTime();
+		currentTime = clock.getElapsedTime().asSeconds();
 		//Convert it to the time passed since the last frame (in seconds)
 		dt = currentTime - LastTime;
 		//Update the when the last update started
